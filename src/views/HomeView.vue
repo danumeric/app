@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="workspace__row _container">
+    <LeftPanelComp />
+    <CentralPanel />
   </div>
+
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LeftPanelComp from "@/components/leftPanel/LeftPanel";
+import CentralPanel from "@/components/centralPanel/CentralPanel";
+
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      friends: [],
+    }
+  },
   components: {
-    HelloWorld
-  }
+    LeftPanelComp, CentralPanel
+  },
+  methods: {
+  },
+  computed: {
+  },
 }
 </script>
+<style lang="scss" scoped>
+._container {
+  max-width: 1170px;
+  margin: 0 auto;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.workspace__row {
+  display: flex; // 2 вертикальные колонки
+  // flex-wrap: wrap;
+}
+</style>

@@ -1,0 +1,97 @@
+<template>
+  <div class="workspace__element">
+
+    <div class="window" v-if="getTargetUserID">
+      <div class="window__row window__row_top">
+        <p>верх</p>
+        <div class="fieldmessages">
+          <div class="message" v-for="ObjectMessage in getDisplayedMessages" :key="ObjectMessage._id">
+            <ChatComponent :ObjectMessage="ObjectMessage" />
+          </div>
+        </div>
+      </div>
+      <div class="window__row window__row_bot">
+        <BottomFields />
+      </div>
+    </div>
+    <NoChoosedConverstion v-if="!getTargetUserID" />
+  </div>
+
+</template>
+<script>
+import SocketioService from '@/services/socketio.service.js';
+import BottomFields from "./BottomFields";
+import ChatComponent from "./ChatComponent";
+import NoChoosedConverstion from "./NoChoosedConverstion";
+
+import { mapGetters, mapActions } from "vuex";
+
+
+export default {
+  name: 'CentralPanel',
+  data() {
+    return {
+      isConnected: false,
+      socketMessage: ''
+    }
+  },
+  components: {
+    BottomFields, ChatComponent, NoChoosedConverstion
+  },
+
+  computed: {
+    ...mapGetters(['getAllMessages', 'getTargetUserID', 'getDisplayedMessages'])
+  },
+  created() {
+    SocketioService.setupSocketConnection();
+  },
+  beforeUnmount() {
+    SocketioService.disconnect();
+  },
+  methods: {
+    ...mapActions(['fetchGetMessages']),
+  },
+  async mounted() {
+    this.fetchGetMessages();
+  }
+}
+
+</script>
+
+<style lang="scss" scoped>
+.workspace__element {
+  flex: 0 1 70%;
+  outline: 1px solid #138488;
+}
+
+
+
+.window {
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__row_top {
+    overflow-y: scroll;
+
+    flex: 1 1 auto;
+  }
+
+  &__row_bot {
+    //TODO дизайн
+    flex: 0 0 10%;
+
+    // height: 60px;
+    outline: 1px solid black;
+  }
+}
+
+.fieldmessages {
+  //height: calc(100vh - 20px); // пересчитаить
+  display: flex;
+  justify-content: flex-end;
+
+  flex-direction: column;
+}
+</style>
