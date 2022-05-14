@@ -74,8 +74,19 @@ export default {
 
   &__row_top {
     overflow-y: scroll;
-
     flex: 1 1 auto;
+      &::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+&::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+&::-webkit-scrollbar-thumb {
+  background-color: #69accd;
+  border-radius: 10px;
+}
   }
 
   &__row_bot {

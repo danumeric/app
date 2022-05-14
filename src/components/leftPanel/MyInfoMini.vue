@@ -27,9 +27,9 @@ export default {
     ...mapGetters(['getMyProfile'])
   },
   methods: {
-    exit() {
-      localStorage.setItem('token', '');
-      router.push('/auth');
+    async exit() {
+     await localStorage.setItem('token', '');
+     await router.push('/auth');
 
     }
   }

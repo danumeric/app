@@ -17,6 +17,8 @@
 
 <script>
 import { mapMutations } from "vuex";
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
+//const adressBackend = 'http://localhost:5000'
 
 export default {
   name: 'AuthView',
@@ -34,8 +36,8 @@ export default {
       let newUserObj = {
         username: f.username.value.toString(),
         password: f.password.value.toString(),
-      };
-      let response = await fetch('http://127.0.0.1:5000/auth/login', {
+      };//http://127.0.0.1:5000
+      let response = await fetch(`${adressBackend}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

@@ -1,4 +1,6 @@
 import router from '@/router'
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
+//const adressBackend = 'http://localhost:5000'
 
 
 export default ({
@@ -50,7 +52,7 @@ export default ({
         if (!t) {
           router.push('/auth');
         }
-        const res = await fetch('http://localhost:5000/auth/addConversation', {
+        const res = await fetch(`${adressBackend}/auth/addConversation`, {
           method: 'POST',
           headers: {
             'authorization': t,
@@ -126,7 +128,7 @@ export default ({
       if (!t) {
         router.push('/auth');
       }
-      const res = await fetch('http://localhost:5000/auth/messages', {
+      const res = await fetch(`${adressBackend}/auth/messages`, {
         headers: {
           'authorization': t,
           'Content-Type': 'application/json;charset=utf-8'

@@ -1,7 +1,7 @@
 <template>
-  <form name="testSend" @submit="sendMsg">
-    <input class="reg__fields" name="send" placeholder="Your message" required />
-    <input type="submit" value="send!" class="reg__fields reg__submit" />
+  <form name="send" @submit="sendMsg" class="send">
+    <input class="send__field" name="sendValue" placeholder="Write anything" required />
+    <input type="submit" value="send" class="send__fields send__submit" />
   </form>
 </template>
 
@@ -18,7 +18,8 @@ export default {
     async sendMsg(e) {
       e.preventDefault();
       let targetUserID = this.getTargetUserID;
-      let msg = document.forms.testSend.send.value;
+      let msg = document.forms.send.sendValue.value;
+      document.forms.send.sendValue.value = ''
       let timeNow = new Date().getTime().toString();
       const idMongo =  new ObjectID();
       let deliveryStatus = 'pending';
@@ -42,8 +43,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.reg__submit{
+.send{
+  display: block;
+  margin: 10px 0 0 0;
+&__submit{
+  display: inline-block;
+  border-radius: 10px;
+  padding: 5px;
   cursor: pointer;
   background: rgb(175, 251, 255);
+}
 }
 </style>
