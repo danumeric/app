@@ -12,6 +12,7 @@ import LeftPanelComp from "@/components/leftPanel/LeftPanel";
 import CentralPanel from "@/components/centralPanel/CentralPanel";
 
 
+
 export default {
   name: 'HomeView',
   data() {
@@ -26,6 +27,9 @@ export default {
   },
   computed: {
   },
+  mounted(){
+
+  }
 }
 </script>
 <style lang="scss" scoped>

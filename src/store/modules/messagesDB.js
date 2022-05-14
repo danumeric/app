@@ -124,6 +124,8 @@ export default ({
   actions: {
 
     async fetchGetMessages(ctx) {
+      this.displayedMessages = [];
+      this.messages = [];
       const t = localStorage.getItem('token');
       if (!t) {
         router.push('/auth');
