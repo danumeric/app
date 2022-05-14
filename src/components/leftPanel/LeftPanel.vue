@@ -18,7 +18,7 @@
 <script>
 import UserLeftCard from "./UserLeftCard";
 import NoFriendsErrSearch from "./NoFriendsErrSearch";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions,mapMutations } from "vuex";
 import MyInfoMini from "./MyInfoMini";
 import SearchPanel from "./SearchPanel";
 import NoFriendsInDB from "./NoFriendsInDB";
@@ -46,6 +46,8 @@ return this.getFliteredFriends(this.searchText)
   },
   methods: {
     ...mapActions(['fetchFriends']),
+    ...mapMutations(['clearAll']),
+
      chooseCardColor(id){
        for (let i = 0; i < this.listFriends.length; i++){
          this.listFriends[i].userChoosedColor = '';
@@ -55,6 +57,7 @@ return this.getFliteredFriends(this.searchText)
      }
   },
   async mounted() {
+    this.clearAll();
     this.fetchFriends()
   }
 }

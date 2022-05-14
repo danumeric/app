@@ -38,6 +38,11 @@ export default ({
     updatetargetUserID(state, newID) {
       state.targetUserID = newID;
     },
+    clearAll(state) {
+      state.messages = [];
+      state.displayedMessages = [];
+      state.targetUserID = '';
+    },
     async startConversation(state, userId) {//когда выбираешь беседу среи чатов
       this.commit('updatetargetUserID', userId);
       let db = state.messages;

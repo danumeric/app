@@ -50,6 +50,7 @@ export default {
       if (this.token) {
         this.loginSuccessful(true);
         localStorage.setItem('token', this.token);
+
         setTimeout(() => {
           this.$router.push('/')
         }, 2000);
