@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters,mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 // import NavigationLinks from "@/components/navigation/NavigationLinks";
 import router from '@/router'
 
@@ -25,15 +25,17 @@ export default {
 
   computed: {
     ...mapGetters(['getMyProfile']),
-    ...mapMutations(['updateMessagesDb', 'updateDisplayedMessages']),
+   // ...mapMutations(['updateMessagesDb', 'updateDisplayedMessages']),
     
   },
   methods: {
     async exit() {
+      this.$store.state.messages = [];
+      this.$store.state.displayedMessages = [];
      await localStorage.setItem('token', '');
      await router.push('/auth');
-this.updateMessagesDb([]);
-this.updateDisplayedMessages([]);
+
+
     }
   }
 }
