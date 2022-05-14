@@ -32,6 +32,9 @@ export default {
     async exit() {
       this.$store.state.messages = [];
       this.$store.state.displayedMessages = [];
+      this.$store.state.targetUserID = '';
+
+      
      await localStorage.setItem('token', '');
      await router.push('/auth');
 

@@ -124,6 +124,9 @@ export default ({
   actions: {
 
     async fetchGetMessages(ctx) {
+      await this.commit('updateMessagesDb', [])
+      await this.commit('updateDisplayedMessages', [])
+      await this.commit('updatetargetUserID', '')
 
       const t = localStorage.getItem('token');
       if (!t) {
