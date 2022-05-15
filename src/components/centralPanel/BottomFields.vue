@@ -63,7 +63,7 @@ export default {
   //margin: 10px 0 0 0;
 
   &__container {
-    margin: 5px 5px 5px 5px;;
+    margin: 15px 5px 5px 5px;;
     display: flex;
     outline: 1px solid rgb(95, 185, 230);
   }

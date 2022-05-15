@@ -42,10 +42,11 @@ export default {
 }
 
 .user-left-card {
+ // box-sizing: border-box;
   cursor: pointer;
   position: relative;
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #69accd;
 
   &__photo {
     padding: 5px 0px 5px 5px;

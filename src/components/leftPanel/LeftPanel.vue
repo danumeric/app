@@ -75,6 +75,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+    outline: 1px solid #69accd;
+
 }
 
 .workspace__users {

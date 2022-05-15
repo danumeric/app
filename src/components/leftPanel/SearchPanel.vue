@@ -1,15 +1,9 @@
 <template>
   <div class="search">
-    <p>Search (press esc to cncl)</p>
+    <p>Search (press esc to cancel)</p>
 
     <form action>
-      <input
-        v-model="searchText"
-        @keydown="onKeyEsc"
-        type="text"
-        placeholder="search friend"
-        class="search__input"
-      />
+      <input  v-model="searchText" @keydown="onKeyEsc" type="text" placeholder="search person" class="search__input" />
     </form>
   </div>
 </template>
@@ -47,10 +41,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search {
+  padding: 5px 0;
   flex: 0 0;
-  outline: 2px solid #5e5373;
-
+ 
   &__input {
+    margin: 5px 0px 0px 0px;
     outline: 1px solid black;
   }
 }

@@ -1,19 +1,22 @@
 <template>
   <div class="workspace__element">
     <div class="wrapper">
-      <div class="navigation">
-        <a href="#" @click="exit">Exit</a>
-      </div>
+
       <div class="myprofile">
-        <p>Login as</p>
+        <p>You login as</p>
         <p> {{ getMyProfile.firstName }} {{ getMyProfile.secondName }}</p>
       </div>
+      <div class="navigation" @click="exit">
+        <a href="#">Exit</a>
+      </div>
     </div>
+    <hr />
   </div>
+
 </template>
 
 <script>
-import { mapGetters,mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 // import NavigationLinks from "@/components/navigation/NavigationLinks";
 import router from '@/router'
 
@@ -25,15 +28,18 @@ export default {
 
   computed: {
     ...mapGetters(['getMyProfile']),
-    
+
   },
   methods: {
-   ...mapMutations(['clearAll']),
+    ...mapMutations(['clearAll']),
 
     async exit() {
       this.clearAll();
-          await localStorage.setItem('token', '');
-     await router.push('/auth');
+      await localStorage.setItem('token', '');
+      setTimeout(() => {
+        router.push('/auth');
+
+      }, 2);
 
 
     }
@@ -43,17 +49,30 @@ export default {
 <style lang="scss" scoped>
 .workspace__element {
   flex: 0 0;
-  outline: 1px solid #5e5373;
+}
+
+hr {
+  border-top: 1px solid #69accd;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 5px 0;
 }
 
 .navigation {
+  background-color: #69accd;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin: 0px 5px 0px 0px;
   flex: 0 1 20%;
+
+  & a {
+    color: black;
+  }
 }
 
 .myprofile {
@@ -61,14 +80,14 @@ export default {
 
 }
 
-.nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+// .nav {
+//   a {
+//     font-weight: bold;
+//     color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+//     &.router-link-exact-active {
+//       color: #42b983;
+//     }
+//   }
+// }
 </style>

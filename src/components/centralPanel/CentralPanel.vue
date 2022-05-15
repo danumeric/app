@@ -3,7 +3,7 @@
 
     <div class="window" v-if="getTargetUserID">
       <div class="window__row window__row_top">
-        <p>верх</p>
+        <p></p>
         <div class="fieldmessages">
           <div class="message" v-for="ObjectMessage in getDisplayedMessages" :key="ObjectMessage._id">
             <ChatComponent :ObjectMessage="ObjectMessage" />
