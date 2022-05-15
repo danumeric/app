@@ -40,8 +40,7 @@ export default {
       let response = await fetch(`${adressBackend}/auth/login`, {
         
         method: 'POST',
-                  mode: 'no-cors',
-
+ 
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },

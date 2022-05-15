@@ -62,7 +62,6 @@ export default ({
         const res = await fetch(`${adressBackend}/auth/addConversation`, {
           method: 'POST',
           headers: {
-            mode: 'no-cors',
             'authorization': t,
             'Content-Type': 'application/json;charset=utf-8'
           },
@@ -141,8 +140,7 @@ export default ({
         router.push('/auth');
       }
       const res = await fetch(`${adressBackend}/auth/messages`, {
-        mode: 'no-cors',
-
+ 
         headers: {
           'authorization': t,
           'Content-Type': 'application/json;charset=utf-8'

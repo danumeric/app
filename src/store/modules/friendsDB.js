@@ -47,9 +47,7 @@ export default ({
         router.push('/auth');
       }
       const res = await fetch(`${adressBackend}/auth/users`, {
-        mode: 'no-cors',
-
-        headers: {
+         headers: {
           'authorization': t,
           'Content-Type': 'application/json;charset=utf-8'
         }

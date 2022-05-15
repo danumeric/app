@@ -277,8 +277,7 @@ export default {
       console.log(newUserObj);
       let response = await fetch(`${adressBackend}/auth/registration`, {
         method: 'POST',
-                  mode: 'no-cors',
-
+ 
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
