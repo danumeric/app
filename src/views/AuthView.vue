@@ -38,7 +38,10 @@ export default {
         password: f.password.value.toString(),
       };//http://127.0.0.1:5000
       let response = await fetch(`${adressBackend}/auth/login`, {
+        
         method: 'POST',
+                  mode: 'no-cors',
+
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },

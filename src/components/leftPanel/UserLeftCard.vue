@@ -1,5 +1,5 @@
 <template>
-  <div class="user-left-card" @click="(startConversation(user._id))" :class="user.userChoosedColor" >
+  <div class="user-left-card" @click="(startConversation(user._id)), clearInput()" :class="user.userChoosedColor">
     <img class="user-left-card__photo" :src="user.selectedAvatar" :alt="user.firstName" />
     <img class="user-left-card__flag" :src="require(`@/assets/flags-svg/${user.country.toLowerCase()}.svg`)"
       :alt="user.country" />
@@ -11,34 +11,36 @@
 </template>
 
 <script>
- 
+
 import { mapMutations } from "vuex";
 
 export default {
   name: 'UserLeftCard',
-    data() {
+  data() {
     return {
-     
-      }
+    }
   },
   props: {
     user: Object
   },
-   computed: {
+  computed: {
 
     //  ...mapGetters(['getFriendsDB'])
   },
   methods: {
-   
+    clearInput() {
+      document.forms.send.sendValue.value = '';
+    },
     ...mapMutations(['startConversation']),
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.choosed-usercard{
+.choosed-usercard {
   background: rgb(150, 219, 244);
 }
+
 .user-left-card {
   cursor: pointer;
   position: relative;
