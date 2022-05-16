@@ -17,8 +17,8 @@
 
 <script>
 import { mapMutations } from "vuex";
-//const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
-const adressBackend = 'http://localhost:5000'
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
+//const adressBackend = 'http://localhost:5000'
 
 export default {
   name: 'AuthView',
