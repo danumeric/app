@@ -237,7 +237,7 @@
 
 <script>
 import PictureForm from "@/components/regForm/PictureForm";
-//const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
 //const adressBackend = 'http://localhost:5000'
 
 export default {
@@ -275,7 +275,7 @@ export default {
 
 
       console.log(newUserObj);
-      let response = await fetch(`${this.$hostname}/auth/registration`, {
+      let response = await fetch(`${adressBackend}/auth/registration`, {
         method: 'POST',
 
         headers: {

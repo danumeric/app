@@ -1,11 +1,12 @@
 import router from '@/router'
-//const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' //
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' //
 //const adressBackend = 'http://localhost:5000'
 
 export default ({
   state: {
     friendsDB: [],
     myProfile: {},
+    //adressBackend: 'https://safe-fjord-51597.herokuapp.com'
   },
   getters: {
 
@@ -46,8 +47,8 @@ export default ({
       if (!t) {
         router.push('/auth');
       }
-      const res = await fetch(`${this.$hostname}/auth/users`, {
-         headers: {
+      const res = await fetch(`${adressBackend}/auth/users`, {
+        headers: {
           'authorization': t,
           'Content-Type': 'application/json;charset=utf-8'
         }
