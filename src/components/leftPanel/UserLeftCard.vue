@@ -1,5 +1,6 @@
 <template>
-  <div class="user-left-card" @click="(startConversation(user._id)), clearInput()" :class="user.userChoosedColor">
+  <div class="user-left-card" @click="clearInput(user._id), (startConversation(user._id))"
+    :class="user.userChoosedColor">
     <img class="user-left-card__photo" :src="user.selectedAvatar" :alt="user.firstName" />
     <img class="user-left-card__flag" :src="require(`@/assets/flags-svg/${user.country.toLowerCase()}.svg`)"
       :alt="user.country" />
@@ -12,7 +13,7 @@
 
 <script>
 
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   name: 'UserLeftCard',
@@ -24,12 +25,14 @@ export default {
     user: Object
   },
   computed: {
-
-    //  ...mapGetters(['getFriendsDB'])
+    ...mapGetters(['getTargetUserID'])
   },
   methods: {
-    clearInput() {
-      document.forms.send.sendValue.value = '';
+    clearInput(targetID) { //clear form messages when change conversation
+      console.log(this.getTargetUserID);
+      if (this.getTargetUserID && targetID != this.getTargetUserID) {
+        document.forms.send.sendValue.value = '';
+      }
     },
     ...mapMutations(['startConversation']),
   }
@@ -42,7 +45,7 @@ export default {
 }
 
 .user-left-card {
- // box-sizing: border-box;
+  // box-sizing: border-box;
   cursor: pointer;
   position: relative;
   display: flex;

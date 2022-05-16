@@ -1,6 +1,6 @@
 import router from '@/router'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
-//const adressBackend = 'http://localhost:5000'
+//const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
+const adressBackend = 'http://localhost:5000'
 
 
 export default ({
@@ -29,7 +29,7 @@ export default ({
 
   },
   mutations: {
-    updateMessagesDb(state, db) {// додумать отправку на сервер
+    updateMessagesDb(state, db) {// 
       state.messages = db;
     },
     updateDisplayedMessages(state, arr) {
