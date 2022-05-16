@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 import store from '../store'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'127.0.0.1:3000' //
+//const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'127.0.0.1:3000' //
 //const adressBackend = '127.0.0.1:5000' 
 
 
@@ -11,7 +11,7 @@ class SocketioService {
   async setupSocketConnection() {
     try {
       console.log('socket on');
-      this.socket = io(`${adressBackend}`, {
+      this.socket = io(`${this.$hostname}`, {
         reconnectionDelay: 1000,
         reconnection: true,
         reconnectionAttemps: 10,

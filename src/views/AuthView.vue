@@ -17,7 +17,7 @@
 
 <script>
 import { mapMutations } from "vuex";
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
+//const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
 //const adressBackend = 'http://localhost:5000'
 
 export default {
@@ -37,7 +37,7 @@ export default {
         username: f.username.value.toString(),
         password: f.password.value.toString(),
       };//http://127.0.0.1:5000
-      let response = await fetch(`${adressBackend}/auth/login`, {
+      let response = await fetch(`${this.$hostname}/auth/login`, {
         
         method: 'POST',
  
