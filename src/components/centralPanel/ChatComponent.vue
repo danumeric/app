@@ -9,40 +9,41 @@
   </div>
 </template>
 <script>
-//import { mapGetters } from "vuex";
-
 export default {
-  name: 'ChatComponent',
+  name: "ChatComponent",
   data() {
     return {
-      isMyMessage: '',
-     }
+      isMyMessage: "",
+    };
   },
   props: {
-    ObjectMessage: Object
+    ObjectMessage: Object,
   },
   methods: {
     showDate(timeStamp) {
       let date = new Date(+timeStamp);
       let h = date.getHours();
       let m = date.getMinutes();
-      if (+h < 10) h = '0' + h;
-      if (+m < 10) m = '0' + m;
+      if (+h < 10) h = "0" + h;
+      if (+m < 10) m = "0" + m;
       let dateStr = `${h}:${m}`;
       return dateStr;
-    }
+    },
   },
   created() {
-    this.isMyMessage = this.ObjectMessage.fromOwner ? "chat__incoming" : "chat__outcome"
+    //fromOwner means that I send message
+    this.isMyMessage = this.ObjectMessage.fromOwner
+      ? "chat__incoming"
+      : "chat__outcome";
   },
   computed: {
     displDeliveryStatus() {
-      if (this.ObjectMessage.deliveryStatus === 'onServer') return '✓';
-      if (this.ObjectMessage.deliveryStatus === 'pending') return '...';
-      return '';
+      if (this.ObjectMessage.deliveryStatus === "onServer") return "✓";
+      if (this.ObjectMessage.deliveryStatus === "pending") return "...";
+      return "";
     },
   },
-}
+};
 </script>
 
 

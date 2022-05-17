@@ -1,13 +1,9 @@
 <template>
-  <div class="no-conversation">
-    Please choose conversation
-  </div>
+  <div class="no-conversation">Please choose conversation</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>

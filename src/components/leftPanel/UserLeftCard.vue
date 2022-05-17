@@ -1,9 +1,19 @@
 <template>
-  <div class="user-left-card" @click="clearInput(user._id), (startConversation(user._id))"
-    :class="user.userChoosedColor">
-    <img class="user-left-card__photo" :src="user.selectedAvatar" :alt="user.firstName" />
-    <img class="user-left-card__flag" :src="require(`@/assets/flags-svg/${user.country.toLowerCase()}.svg`)"
-      :alt="user.country" />
+  <div
+    class="user-left-card"
+    @click="clearInput(user._id), startConversation(user._id)"
+    :class="user.userChoosedColor"
+  >
+    <img
+      class="user-left-card__photo"
+      :src="user.selectedAvatar"
+      :alt="user.firstName"
+    />
+    <img
+      class="user-left-card__flag"
+      :src="require(`@/assets/flags-svg/${user.country.toLowerCase()}.svg`)"
+      :alt="user.country"
+    />
 
     <div class="user-left-card__name">
       <h3>{{ user.firstName }} {{ user.secondName }}</h3>
@@ -12,31 +22,30 @@
 </template>
 
 <script>
-
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
-  name: 'UserLeftCard',
+  name: "UserLeftCard",
   data() {
-    return {
-    }
+    return {};
   },
   props: {
-    user: Object
+    user: Object,
   },
   computed: {
-    ...mapGetters(['getTargetUserID'])
+    ...mapGetters(["getTargetUserID"]),
   },
   methods: {
-    clearInput(targetID) { //clear form messages when change conversation
+    clearInput(targetID) {
+      //clear variable of visible messages when change conversation
       console.log(this.getTargetUserID);
       if (this.getTargetUserID && targetID != this.getTargetUserID) {
-        document.forms.send.sendValue.value = '';
+        document.forms.send.sendValue.value = "";
       }
     },
-    ...mapMutations(['startConversation']),
-  }
-}
+    ...mapMutations(["startConversation"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -9,64 +9,57 @@
         <input class="auth__fields" name="password" placeholder="password" />
         <input type="submit" value="login" class="auth__fields" />
       </form>
-      <div class="auth__failed">{{ alertMessage }} </div>
-
+      <div class="auth__failed">{{ alertMessage }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
+const adressBackend = "https://safe-fjord-51597.herokuapp.com";
 //const adressBackend = 'http://localhost:5000'
 
 export default {
-  name: 'AuthView',
+  name: "AuthView",
   data() {
     return {
-      alertMessage: '',
-      token: '',
-    }
+      alertMessage: "",
+      token: "",
+    };
   },
 
   mounted() {
     let f = document.forms[0];
-    f.addEventListener('submit', (async (e) => {
+    f.addEventListener("submit", async (e) => {
       e.preventDefault();
       let newUserObj = {
         username: f.username.value.toString(),
         password: f.password.value.toString(),
-      };//http://127.0.0.1:5000
+      };
       let response = await fetch(`${adressBackend}/auth/login`, {
-
-        method: 'POST',
-
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
+          "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify(newUserObj)
+        body: JSON.stringify(newUserObj),
       });
       let result = await response.json();
       this.alertMessage = result.message;
       this.token = result.token;
       if (this.token) {
         this.loginSuccessful(true);
-        localStorage.setItem('token', this.token);
+        localStorage.setItem("token", this.token);
 
         setTimeout(() => {
-          this.$router.push('/')
+          this.$router.push("/");
         }, 2000);
       }
-
-
-    }))
+    });
   },
   methods: {
-    ...mapMutations(['loginSuccessful']),
-  }
-}
-
-
+    ...mapMutations(["loginSuccessful"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

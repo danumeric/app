@@ -1,35 +1,29 @@
 import router from '@/router'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
 //const adressBackend = 'http://localhost:5000'
 
 
 export default ({
 
   state: {
-    messages: [],//полная БД  монг для конкр юзера
-    displayedMessages: [],// отображаемые в диалоге сообщения
-    targetUserID: ""
+    messages: [],//full DB of all messages of user
+    displayedMessages: [],// showed messages
+    targetUserID: "" //id of choosed interlocutor 
   },
   getters: {
     getAllMessages(state) {
       return state.messages;
     },
     getDisplayedMessages(state) {
-      //console.log('displ', state.displayedMessages);
       return state.displayedMessages
     },
     getTargetUserID(state) {
       return state.targetUserID
     },
-    // getMessagesWithUser(state, idInterlocater) {
-    //   let conversations = state.messages.find(item => item.idInterlocator === idInterlocater)
-    //   console.log(conversations);
-    //   return conversations
-    // }
 
   },
   mutations: {
-    updateMessagesDb(state, db) {// 
+    updateMessagesDb(state, db) {//
       state.messages = db;
     },
     updateDisplayedMessages(state, arr) {
@@ -43,8 +37,7 @@ export default ({
       state.displayedMessages = [];
       state.targetUserID = '';
     },
-    async startConversation(state, userId) {//когда выбираешь беседу среи чатов
-
+    async startConversation(state, userId) {//choose conversation
 
       this.commit('updatetargetUserID', userId);
       let db = state.messages;
@@ -69,7 +62,6 @@ export default ({
         })
 
         const newdb = await res.json();
-        console.log(res.status);
         if (res.status > 199 && res.status < 300) {
           console.log('addConversation status OK');
           this.commit('updateMessagesDb', newdb)
@@ -81,23 +73,19 @@ export default ({
         }
       }
 
-
-      //console.log('newDisplayedDBMEssagwes', existingConversation.conversations);
-
       await this.commit('updateDisplayedMessages', existingConversation.conversations)
       let fieldMessages = document.querySelector('.window__row_top');
       fieldMessages.scrollTop = fieldMessages.scrollHeight;
 
     },
 
-    async addInputMessageToDB(state, payload) {
+    async addInputMessageToDB(state, payload) {//handling recieve message  
 
       payload._id = payload.idMongo;
-      // console.log('addInputMessageToDB', payload);
       let db = state.messages;
       let targetConversation = db.find((item) => (item.idInterlocator === payload.senderID));
       targetConversation.conversations.push(payload);
-      if (state.targetUserID === payload.senderID) {// если сообщение приходит и мы в окне с этим собеседниеом
+      if (state.targetUserID === payload.senderID) {
         setTimeout(() => {
           let fieldMessages = document.querySelector('.window__row_top');
           fieldMessages.scrollTop = fieldMessages.scrollHeight;
@@ -105,16 +93,12 @@ export default ({
 
       }
     },
-    async addMessageToVuex(state, payload) {//сразу отобразить на фронтенде
-      // 
+    async addMessageToVuex(state, payload) {//immediatly drow sended message
 
-      console.log('msg addMessageToVuex: ', payload);
       let currentDisplayed = state.displayedMessages;//add to displayed messages
       currentDisplayed.push(payload);
-
       await this.commit('updateDisplayedMessages', currentDisplayed)
-
-      if (state.targetUserID === payload.senderID) {//прокрутка, если пришло сообщение и мы находимся в этом чате
+      if (state.targetUserID === payload.senderID) {//scroll
         let fieldMessages = document.querySelector('.window__row_top');
         fieldMessages.scrollTop = fieldMessages.scrollHeight;
       }

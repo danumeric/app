@@ -1,14 +1,13 @@
 <template>
   <div class="search-not-found">
-    <p>err search</p>
+    <p>No one user finded</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NoFriendsErrSearch',
-
-}
+  name: "NoFriendsErrSearch",
+};
 </script>
 
 <style lang="scss" scoped>

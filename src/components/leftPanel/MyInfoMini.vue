@@ -1,10 +1,9 @@
 <template>
   <div class="workspace__element">
     <div class="wrapper">
-
       <div class="myprofile">
         <p>You login as</p>
-        <p> {{ getMyProfile.firstName }} {{ getMyProfile.secondName }}</p>
+        <p>{{ getMyProfile.firstName }} {{ getMyProfile.secondName }}</p>
       </div>
       <div class="navigation" @click="exit">
         <a href="#">Exit</a>
@@ -12,39 +11,31 @@
     </div>
     <hr />
   </div>
-
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-// import NavigationLinks from "@/components/navigation/NavigationLinks";
-import router from '@/router'
+import router from "@/router";
 
 export default {
-  name: 'MyInfoMini',
-  components: {
-    //  NavigationLinks
-  },
+  name: "MyInfoMini",
+  components: {},
 
   computed: {
-    ...mapGetters(['getMyProfile']),
-
+    ...mapGetters(["getMyProfile"]),
   },
   methods: {
-    ...mapMutations(['clearAll']),
+    ...mapMutations(["clearAll"]),
 
     async exit() {
       this.clearAll();
-      await localStorage.setItem('token', '');
+      await localStorage.setItem("token", "");
       setTimeout(() => {
-        router.push('/auth');
-
+        router.push("/auth");
       }, 2);
-
-
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .workspace__element {
@@ -77,17 +68,5 @@ hr {
 
 .myprofile {
   flex: 0 1 80%;
-
 }
-
-// .nav {
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>

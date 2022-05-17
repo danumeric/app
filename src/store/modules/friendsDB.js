@@ -6,7 +6,6 @@ export default ({
   state: {
     friendsDB: [],
     myProfile: {},
-    //adressBackend: 'https://safe-fjord-51597.herokuapp.com'
   },
   getters: {
 
@@ -16,19 +15,17 @@ export default ({
     getFriendsDB(state) {
       return state.friendsDB;
     },
-    // getAdressBackend(state) {
-    //   return state.adressBackend;
-    // },
+
     getFliteredFriends: (state) => (searchText) => {
       // if (state.friendsDB.length === 0) return [];
-      return state.friendsDB.filter(item => { //поиск отфильтрованных друганов по searchText
+      return state.friendsDB.filter(item => { //filter names in list
         if (!searchText) return true;
         if (item.firstName.toLowerCase().includes(searchText.toLowerCase())
           || item.secondName.toLowerCase().includes(searchText.toLowerCase())) return true;
       })
     },
 
-    isFriendListNull(state) { //если список друзей пуст 1
+    isFriendListNull(state) { //no one in userlist
       return state.friendsDB.length === 0 ? true : false;
     }
   },
@@ -42,7 +39,7 @@ export default ({
 
   },
   actions: {
-    async fetchFriends(ctx) {
+    async fetchFriends(ctx) {//get all users from server 
       const t = localStorage.getItem('token');
       if (!t) {
         router.push('/auth');
@@ -54,7 +51,8 @@ export default ({
         }
       })
       let db = await res.json();
-      const me = db[0];
+      const me = db[0];// getUsers in nodeJS puts user in 0 place
+
       db = db.slice(1);
       if (db.failedAuth === true) {
         router.push('/auth');

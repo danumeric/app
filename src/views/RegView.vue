@@ -5,23 +5,64 @@
 
     <div class="reg__block">
       <form name="reg" class="" @submit="submitRegForm">
-        <input class="reg__fields" name="username" placeholder="login" required />
-        <input type="password" class="reg__fields" name="password" placeholder="password" required />
-        <input class="reg__fields" name="firstName" placeholder="first name" required />
-        <input class="reg__fields" name="secondName" placeholder="second name" required />
+        <input
+          class="reg__fields"
+          name="username"
+          placeholder="login"
+          required
+        />
+        <input
+          type="password"
+          class="reg__fields"
+          name="password"
+          placeholder="password"
+          required
+        />
+        <input
+          class="reg__fields"
+          name="firstName"
+          placeholder="first name"
+          required
+        />
+        <input
+          class="reg__fields"
+          name="secondName"
+          placeholder="second name"
+          required
+        />
 
         <div class="reg__sex">
           <p>Choose your sex:</p>
-          <input @change="sexChanged" type="radio" id="sexMale" name="sex" value="male" checked>
+          <input
+            @change="sexChanged"
+            type="radio"
+            id="sexMale"
+            name="sex"
+            value="male"
+            checked
+          />
           <label for="male">Male</label>
-          <input @change="sexChanged" type="radio" id="sexFemale" name="sex" value="female">
+          <input
+            @change="sexChanged"
+            type="radio"
+            id="sexFemale"
+            name="sex"
+            value="female"
+          />
           <label for="female">Female</label>
         </div>
 
         <div class="reg__datePick">
           <label for="start">Birth date:</label>
-          <input type="date" id="birthDate" name="birthDate" value="1994-01-01" min="1960-01-01" max="2010-12-31"
-            required>
+          <input
+            type="date"
+            id="birthDate"
+            name="birthDate"
+            value="1994-01-01"
+            min="1960-01-01"
+            max="2010-12-31"
+            required
+          />
         </div>
         <div class="reg__country">
           select your country:
@@ -227,26 +268,29 @@
           </select>
         </div>
         <PictureForm @selectedAvatar="setImgAdress" ref="child" />
-        <input type="submit" value="create Acc" class="reg__fields reg__submit" />
-
+        <input
+          type="submit"
+          value="create Acc"
+          class="reg__fields reg__submit"
+        />
       </form>
-      <div class="reg__failed">{{ alertMessage }} </div>
+      <div class="reg__failed">{{ alertMessage }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import PictureForm from "@/components/regForm/PictureForm";
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' 
+const adressBackend = "https://safe-fjord-51597.herokuapp.com";
 //const adressBackend = 'http://localhost:5000'
 
 export default {
-  name: 'RegView',
+  name: "RegView",
   data() {
     return {
-      alertMessage: '',
+      alertMessage: "",
       selectedAvatar: "",
-    }
+    };
   },
 
   components: { PictureForm },
@@ -255,8 +299,9 @@ export default {
     setImgAdress(value) {
       this.selectedAvatar = value;
     },
-    sexChanged() {//close grid photos and reset avatar
-      this.$refs.child.hideGridClear()
+    sexChanged() {
+      //close grid photos and reset avatar
+      this.$refs.child.hideGridClear();
     },
     async submitRegForm(e) {
       e.preventDefault();
@@ -272,35 +317,27 @@ export default {
         selectedAvatar: this.selectedAvatar,
       };
 
-
-
       console.log(newUserObj);
       let response = await fetch(`${adressBackend}/auth/registration`, {
-        method: 'POST',
+        method: "POST",
 
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+          "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify(newUserObj)
+        body: JSON.stringify(newUserObj),
       });
 
       let result = await response.json();
 
       this.alertMessage = result.message;
       if (response.status === 200) {
-        setTimeout(() => this.$router.push('auth'), 2000);
+        setTimeout(() => this.$router.push("auth"), 2000);
       }
-
-
-    }
+    },
   },
 
-
-  async mounted() {
-  }
-}
-
-
+  async mounted() {},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -326,7 +363,8 @@ export default {
     border-radius: 5px;
   }
 
-  &__sex {}
+  &__sex {
+  }
 
   &__country {
     select {

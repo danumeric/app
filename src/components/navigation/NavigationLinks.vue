@@ -7,14 +7,13 @@
 </template>
 
 <script>
-
 import { mapGetters } from "vuex";
 
 export default {
-  name: 'NavigationLinks',
+  name: "NavigationLinks",
 
   computed: {
-    ...mapGetters(['getTargetUserID'])
+    ...mapGetters(["getTargetUserID"]),
   },
-}
+};
 </script>

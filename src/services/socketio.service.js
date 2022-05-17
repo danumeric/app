@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 import store from '../store'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'127.0.0.1:3000' //
+const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
 //const adressBackend = '127.0.0.1:5000' 
 
 
@@ -25,24 +25,25 @@ class SocketioService {
         }
       });
 
-      this.socket.on('messageFromServer', (msg) => {//приём сообщений по сокетИО
+      this.socket.on('messageFromServer', (msg) => {//recieve message by socketIO
         msg.fromOwner = false;
-        // console.log('msg.senderID', msg.senderID);
-        // console.log('store.targetUserID', store.getTargetUserID);
 
-        if (store.targetUserID === msg.senderID) {
+        if (store.targetUserID === msg.senderID) {// if chat already open, write immediatly
           store.commit('addMessageToVuex', msg);
-          console.log('мы в чате с ним');
         }
 
-        store.commit('addInputMessageToDB', msg);
+        store.commit('addInputMessageToDB', msg);// add to database with all message anyway
 
-        console.log('recieve SocketIO: ', msg);
+        //console.log('recieve SocketIO: ', msg);
 
       })
 
-    } catch (e) { console.log(e); }
+    } catch (e) {
+      console.log(e);
+    }
+
     this.socket.connect();
+
   }
   sendMessage(msg, target, timeStamp, idMongo) {
 
@@ -53,25 +54,23 @@ class SocketioService {
       timeStamp: timeStamp,
       idMongo: idMongo
     },
-      (response) => {
-        console.log(response.idDelivMsg); //TODO Привязка к элементу списка;
+      (response) => {// when delievered or error
+        console.log(response.idDelivMsg);
         let payload = {
           idMessage: response.idDelivMsg,
           newStatus: 'onServer'
         }
-        console.log('changeMessageStatus', payload);
         store.commit('changeMessageStatus', payload);
 
       }
     );
-
   }
+
   disconnect() {
     if (this.socket) {
       this.socket.disconnect();
     }
   }
-
 }
 
 export default new SocketioService();
