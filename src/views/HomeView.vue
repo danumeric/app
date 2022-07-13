@@ -8,6 +8,7 @@
 <script>
 import LeftPanelComp from "@/components/leftPanel/LeftPanel";
 import CentralPanel from "@/components/centralPanel/CentralPanel";
+import router from "@/router";
 
 export default {
   name: "HomeView",
@@ -22,7 +23,11 @@ export default {
   },
   methods: {},
   computed: {},
-  mounted() {},
+  beforeCreate() {
+    if (!localStorage.getItem("token")) {
+      router.push("/auth");
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
