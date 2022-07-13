@@ -1,5 +1,5 @@
 <template>
-  <router-view />
+  <router-view v-cloak></router-view>
 </template>
 
 <style lang="scss">
@@ -12,7 +12,9 @@
 
   box-sizing: border-box;
 }
-
+[v-cloak] {
+  display: none;
+}
 //null
 * {
   padding: 0px;

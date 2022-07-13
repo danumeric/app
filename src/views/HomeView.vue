@@ -1,5 +1,5 @@
 <template>
-  <div class="workspace__row _container" v-cloak>
+  <div class="workspace__row _container">
     <LeftPanelComp />
     <CentralPanel />
   </div>
@@ -31,9 +31,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-[v-cloak] {
-  display: none;
-}
 ._container {
   max-width: 1170px;
   margin: 0 auto;
