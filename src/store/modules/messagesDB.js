@@ -1,6 +1,5 @@
 import router from '@/router'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
-//const adressBackend = 'http://localhost:5000'
+import { adressBackend } from '../index.js'
 
 
 export default ({
@@ -106,10 +105,10 @@ export default ({
 
     },
 
-    changeMessageStatus(state, payload) { //payload.idMessage, payload.newStatus
-      let targetMessage = state.displayedMessages.find(item => item._id.toString() === payload.idMessage);
+    changeMessageStatus(state, status) {
+      let targetMessage = state.displayedMessages.find(item => item._id.toString() === status.idMessage);
       console.log('trg:  ', targetMessage);
-      targetMessage.deliveryStatus = payload.newStatus;
+      targetMessage.deliveryStatus = status.newStatus;
     }
   },
   actions: {

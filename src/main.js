@@ -4,5 +4,3 @@ import router from './router'
 import store from './store'
 
 createApp(App).use(store).use(router).mount('#app')
-//appVue.config.globalProperties.$hostname = 'https://safe-fjord-51597.herokuapp.com'
-//TODO make global variable both for Vue, JS

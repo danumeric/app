@@ -1,6 +1,5 @@
 import router from '@/router'
-const adressBackend = 'https://safe-fjord-51597.herokuapp.com' //'http://localhost:5000' //
-//const adressBackend = 'http://localhost:5000'
+import { adressBackend } from '../index.js'
 
 export default ({
   state: {
@@ -17,7 +16,6 @@ export default ({
     },
 
     getFliteredFriends: (state) => (searchText) => {
-      // if (state.friendsDB.length === 0) return [];
       return state.friendsDB.filter(item => { //filter names in list
         if (!searchText) return true;
         if (item.firstName.toLowerCase().includes(searchText.toLowerCase())
@@ -40,6 +38,7 @@ export default ({
   },
   actions: {
     async fetchFriends(ctx) {//get all users from server 
+      console.log('adressBackend', adressBackend);
       const t = localStorage.getItem('token');
       if (!t) {
         router.push('/auth');

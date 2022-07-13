@@ -1,7 +1,7 @@
 <template>
   <div class="_container">
-    <h1>This is an auth page</h1>
-    <router-link to="/reg">registration</router-link>
+    <h1>Not registered yet?</h1>
+    <router-link to="/reg">Click for registration</router-link>
 
     <div class="auth__block">
       <form name="auth" class="auth">
@@ -9,54 +9,37 @@
         <input class="auth__fields" name="password" placeholder="password" />
         <input type="submit" value="login" class="auth__fields" />
       </form>
-      <div class="auth__failed">{{ alertMessage }}</div>
+      <div class="auth__failed">{{ alertLoginMessage }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-const adressBackend = "https://safe-fjord-51597.herokuapp.com";
-//const adressBackend = 'http://localhost:5000'
+import { mapMutations, mapActions } from "vuex";
 
 export default {
   name: "AuthView",
   data() {
     return {
-      alertMessage: "",
+      alertLoginMessage: "",
       token: "",
     };
   },
 
   mounted() {
-    let f = document.forms[0];
-    f.addEventListener("submit", async (e) => {
+    let formLogin = document.forms[0];
+    formLogin.addEventListener("submit", async (e) => {
       e.preventDefault();
-      let newUserObj = {
-        username: f.username.value.toString(),
-        password: f.password.value.toString(),
-      };
-      let response = await fetch(`${adressBackend}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(newUserObj),
+      //send login data to server
+      let res = await this.loginInApp({
+        username: formLogin.username.value.toString(),
+        password: formLogin.password.value.toString(),
       });
-      let result = await response.json();
-      this.alertMessage = result.message;
-      this.token = result.token;
-      if (this.token) {
-        this.loginSuccessful(true);
-        localStorage.setItem("token", this.token);
-
-        setTimeout(() => {
-          this.$router.push("/");
-        }, 2000);
-      }
+      this.alertLoginMessage = res;
     });
   },
   methods: {
+    ...mapActions(["loginInApp"]),
     ...mapMutations(["loginSuccessful"]),
   },
 };

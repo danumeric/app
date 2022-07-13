@@ -1,5 +1,4 @@
 <template>
-
   <router-view />
 </template>
 
@@ -13,8 +12,6 @@
 
   box-sizing: border-box;
 }
-
-
 
 //null
 * {

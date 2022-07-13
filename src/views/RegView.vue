@@ -1,7 +1,7 @@
 <template>
   <div class="reg _container">
-    <h1>This is an reg page</h1>
-    <router-link to="/auth">authorization</router-link>
+    <h1>Already registred?</h1>
+    <router-link to="/auth">Click for authorization</router-link>
 
     <div class="reg__block">
       <form name="reg" class="" @submit="submitRegForm">
