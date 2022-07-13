@@ -10,12 +10,12 @@ const routes = [
   {
     path: '/reg',
     name: 'reg',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RegView.vue')
+    component: () => import('../views/RegView.vue')
   },
   {
     path: '/auth',
     name: 'auth',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AuthView.vue')
+    component: () => import('../views/AuthView.vue')
   },
 ]
 
