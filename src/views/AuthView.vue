@@ -16,6 +16,7 @@
 
 <script>
 import { mapMutations, mapActions } from "vuex";
+import SocketioService from "@/services/socketio.service.js";
 
 export default {
   name: "AuthView",
@@ -27,6 +28,7 @@ export default {
   },
 
   mounted() {
+    SocketioService.disconnect();
     let formLogin = document.forms[0];
     formLogin.addEventListener("submit", async (e) => {
       e.preventDefault();

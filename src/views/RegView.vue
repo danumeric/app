@@ -317,7 +317,6 @@ export default {
         selectedAvatar: this.selectedAvatar,
       };
 
-      console.log(newUserObj);
       let response = await fetch(`${adressBackend}/auth/registration`, {
         method: "POST",
 

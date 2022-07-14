@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 import store from '../store'
 const adressBackend = 'https://safe-fjord-51597.herokuapp.com'
 //const adressBackend = '127.0.0.1:5000' 
-
+export { SocketioService }
 
 class SocketioService {
   socket;

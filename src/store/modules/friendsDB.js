@@ -38,7 +38,6 @@ export default ({
   },
   actions: {
     async fetchFriends(ctx) {//get all users from server 
-      console.log('adressBackend', adressBackend);
       const t = localStorage.getItem('token');
       if (!t) {
         router.push('/auth');
@@ -50,17 +49,21 @@ export default ({
         }
       })
       let db = await res.json();
-      const me = db[0];// getUsers in nodeJS puts user in 0 place
 
-      db = db.slice(1);
       if (db.failedAuth === true) {
         router.push('/auth');
+        return;
       }
+
+      const myProfileData = db[0];// recieve user in 0 place
+      db = db.slice(1);
+
+
       for (let i = 0; i < db.length; i++) {
         db[i].userChoosedColor = '';
       }
 
-      ctx.commit('updateMyProfile', me)
+      ctx.commit('updateMyProfile', myProfileData)
       ctx.commit('updateFriendsDB', db)
     },
   },

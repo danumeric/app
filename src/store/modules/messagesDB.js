@@ -41,12 +41,9 @@ export default ({
       this.commit('updatetargetUserID', userId);
       let db = state.messages;
       let existingConversation = db.find((item) => (item.idInterlocator === userId));
-      if (existingConversation) {
-        console.log('already exist');
-      }
 
       if (!existingConversation) {
-        console.log('not exist');
+        console.log('creating new conversation');
         const t = localStorage.getItem('token');
         if (!t) {
           router.push('/auth');
@@ -62,12 +59,10 @@ export default ({
 
         const newdb = await res.json();
         if (res.status > 199 && res.status < 300) {
-          console.log('addConversation status OK');
           this.commit('updateMessagesDb', newdb)
           existingConversation = state.messages.find(item => item.idInterlocator === userId)
         } else {
-          console.log('err addConcersation');
-          console.log(newdb);
+          console.log('err addConcersation', newdb);
           return;
         }
       }
@@ -138,7 +133,6 @@ export default ({
           }
         }
       }
-      console.log('db: ', db);
 
       if (db.failedAuth === true) {
         router.push('/auth');
