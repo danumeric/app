@@ -1,15 +1,28 @@
 <template>
-  <div class="_container">
-    <h1>Not registered yet?</h1>
-    <router-link to="/reg">Click for registration</router-link>
+  <div class="redirect">
+    <h1 class="redirect__text">Not registered yet?</h1>
+    <router-link to="/reg" class="redirect__link"
+      >Click for registration</router-link
+    >
+  </div>
 
+  <div class="_container">
     <div class="auth__block">
       <form name="auth" class="auth">
         <input class="auth__fields" name="username" placeholder="login" />
-        <input class="auth__fields" name="password" placeholder="password" />
+        <input
+          class="auth__fields"
+          name="password"
+          type="password"
+          placeholder="password"
+        />
         <input type="submit" value="login" class="auth__fields" />
       </form>
       <div class="auth__failed">{{ alertLoginMessage }}</div>
+
+      <div @click="fillLoginUser" class="auth__fill">
+        Fill in login and password automatically
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +42,7 @@ export default {
 
   mounted() {
     SocketioService.disconnect();
-    let formLogin = document.forms[0];
+    const formLogin = document.forms[0];
     formLogin.addEventListener("submit", async (e) => {
       e.preventDefault();
       //send login data to server
@@ -43,21 +56,61 @@ export default {
   methods: {
     ...mapActions(["loginInApp"]),
     ...mapMutations(["loginSuccessful"]),
+    fillLoginUser() {
+      let dataForLogin = [
+        { Danil123: "2222" },
+        { Kyla123: "2222" },
+        { Alex123: "2222" },
+        { Margarete123: "2222" },
+      ];
+      let rand = Math.random() * 4;
+      const formLogin = document.forms[0];
+      const fillLogin = Object.keys(dataForLogin[Math.floor(rand)])[0];
+      const fillPassword = Object.values(dataForLogin[Math.floor(rand)])[0];
+
+      formLogin.username.value = fillLogin;
+      formLogin.password.value = fillPassword;
+      return dataForLogin[Math.floor(rand)];
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 ._container {
+  margin: 10px auto 0px auto;
   max-width: 1170px;
-  margin: 0 auto;
   height: 100vh;
   min-height: 100vh;
 }
-
+.redirect {
+  font-size: 16px;
+  &__text {
+    color: #747b8b;
+    display: block;
+    margin: 5px 0px 0px 0px;
+  }
+  &__link {
+    text-decoration: underline;
+    color: rgb(90, 90, 90);
+    display: inline-block;
+    margin: 5px 0px 0px 0px;
+  }
+}
 .auth {
   font-size: 20px;
 
+  &__fill {
+    cursor: pointer;
+    margin: 35px 0 0 0;
+    padding: 10px 10px;
+    background-color: white;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    outline: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
   &__block {
     position: relative;
     display: block;
@@ -94,7 +147,7 @@ export default {
     }
 
     &:focus {
-      border-color: #cccccc;
+      border-color: #3e7ea2;
     }
   }
 }
