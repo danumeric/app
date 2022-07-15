@@ -11,11 +11,16 @@
     <div class="av-form__grid-wrapper" v-if="isGridShow && fetchCompleted">
       <div
         class="av-form__grid-pics"
-        v-for="pic of picturesJson.results"
-        :key="pic.id.value"
+        v-for="pic of idsProfilePhotos"
+        :key="pic"
       >
         <div class="av-form__pic">
-          <img class="av-form__img" :src="pic.picture.medium" alt="avatar" />
+          <!-- <img class="av-form__img" :src="pic.picture.medium" alt="avatar" /> -->
+          <img
+            class="av-form__img"
+            :src="`https://randomuser.me/api/portraits/med/${choosedSex}/${pic}.jpg`"
+            alt="avatar"
+          />
         </div>
       </div>
     </div>
@@ -23,6 +28,8 @@
 </template>
 
 <script>
+const _ = require("lodash");
+
 export default {
   name: "PictureForm",
   data() {
@@ -30,8 +37,9 @@ export default {
       isGridShow: false,
       fetchCompleted: false,
       picturesJson: {},
-      choosedSex: "male",
+      choosedSex: "men",
       avatarPhoto: "",
+      idsProfilePhotos: [],
     };
   },
   emits: ["selectedAvatar"],
@@ -48,23 +56,16 @@ export default {
     },
 
     async fetchPicsUrls() {
-      this.picturesJson = {};
+      //form 9 random portraits id:
+      this.idsProfilePhotos = _.shuffle(_.range(0, 99)).slice(0, 9);
+      this.fetchCompleted = true;
+      // this.picturesJson = {};
       const radioButtons = document.querySelectorAll('input[name="sex"]');
       for (const radioButton of radioButtons) {
         if (radioButton.checked) {
           this.choosedSex = radioButton.value;
           break;
         }
-      }
-      let resp = await fetch(
-        `https://randomuser.me/api/?inc=picture,id&results=9&gender=${this.choosedSex}`
-      );
-      if (resp.ok) {
-        let respJson = await resp.json();
-        this.fetchCompleted = true;
-        this.picturesJson = respJson;
-      } else {
-        alert("Ошибка HTTP: " + resp.status);
       }
     },
   },
@@ -73,7 +74,6 @@ export default {
       if (e.target.classList.contains("av-form__img")) {
         let picked = document.querySelector(".pic-active");
         if (picked) picked.classList.toggle("pic-active");
-        //  let t = e.target.closest('.av-form__pic');
         this.$emit("selectedAvatar", e.target.src);
         this.avatarPhoto = e.target.src;
         this.isGridShow = false;
@@ -93,13 +93,15 @@ export default {
   }
 
   &__grid-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    position: absolute;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    background-color: rgba(196, 196, 196, 0.468);
+    padding: 5px;
   }
 
   &__grid-pics {
-    flex: 1 1 33%;
-    padding: 10px 0px 0px 0px;
+    padding: 5px;
     line-height: 0;
   }
 

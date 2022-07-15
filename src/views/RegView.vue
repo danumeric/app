@@ -1,8 +1,11 @@
 <template>
+  <div class="redirect">
+    <h1 class="redirect__text">Already registred?</h1>
+    <router-link to="/auth" class="redirect__link"
+      >Click for authorization</router-link
+    >
+  </div>
   <div class="reg _container">
-    <h1>Already registred?</h1>
-    <router-link to="/auth">Click for authorization</router-link>
-
     <div class="reg__block">
       <form name="reg" class="" @submit="submitRegForm">
         <input
@@ -38,18 +41,18 @@
             type="radio"
             id="sexMale"
             name="sex"
-            value="male"
+            value="men"
             checked
           />
-          <label for="male">Male</label>
+          <label for="men">Male</label>
           <input
             @change="sexChanged"
             type="radio"
             id="sexFemale"
             name="sex"
-            value="female"
+            value="women"
           />
-          <label for="female">Female</label>
+          <label for="women">Female</label>
         </div>
 
         <div class="reg__datePick">
@@ -342,11 +345,24 @@ export default {
 <style lang="scss" scoped>
 ._container {
   max-width: 1170px;
-  margin: 0 auto;
+  margin: 10px auto 0px auto;
   height: 100vh;
   min-height: 100vh;
 }
-
+.redirect {
+  font-size: 16px;
+  &__text {
+    color: #747b8b;
+    display: block;
+    margin: 5px 0px 0px 0px;
+  }
+  &__link {
+    text-decoration: underline;
+    color: rgb(90, 90, 90);
+    display: inline-block;
+    margin: 5px 0px 0px 0px;
+  }
+}
 .reg {
   font-size: 16px;
 
@@ -354,7 +370,7 @@ export default {
     position: relative;
     display: block;
     width: 100%;
-    max-width: 500px;
+    max-width: 300px;
     margin: auto;
     padding: 15px;
     background-color: white;
@@ -392,7 +408,7 @@ export default {
     margin: 5px 0px 0px 0px;
 
     &:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &:focus {
