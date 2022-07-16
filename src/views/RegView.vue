@@ -44,7 +44,7 @@
             value="men"
             checked
           />
-          <label for="men">Male</label>
+          <label for="men">Male </label>
           <input
             @change="sexChanged"
             type="radio"
@@ -54,8 +54,8 @@
           />
           <label for="women">Female</label>
         </div>
-
-        <div class="reg__datePick">
+        <hr class="reg__hr" />
+        <div class="reg__datepick">
           <label for="start">Birth date:</label>
           <input
             type="date"
@@ -67,8 +67,10 @@
             required
           />
         </div>
+        <hr class="reg__hr" />
+
         <div class="reg__country">
-          select your country:
+          Select your country:
           <select id="country" name="country" required>
             <option value="AF">Afghanistan</option>
             <option value="AL">Albania</option>
@@ -270,6 +272,8 @@
             <option value="ZW">Zimbabwe</option>
           </select>
         </div>
+        <hr class="reg__hr" />
+
         <PictureForm @selectedAvatar="setImgAdress" ref="child" />
         <input
           type="submit"
@@ -377,12 +381,31 @@ export default {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
   }
-
-  &__sex {
+  &__hr {
+    height: 1px;
+    background-color: rgb(218, 218, 218);
+    margin: 5px 0px 0px 0px;
   }
-
+  &__sex {
+    input {
+      display: inline-block;
+      margin: 5px 0px 0px 0px;
+      &#sexFemale,
+      &#sexMale {
+        vertical-align: middle;
+        margin: 0;
+      }
+    }
+  }
+  &__datepick {
+    margin: 10px 0px 0px 0px;
+  }
   &__country {
+    margin: 10px 0px 0px 0px;
+
     select {
+      margin: 5px 0px 0px 0px;
+      width: 75%;
       font-size: 16px;
     }
   }

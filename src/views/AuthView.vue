@@ -16,7 +16,11 @@
           type="password"
           placeholder="password"
         />
-        <input type="submit" value="login" class="auth__fields" />
+        <input
+          type="submit"
+          value="login"
+          class="auth__fields auth__fields_submit"
+        />
       </form>
       <div class="auth__failed">{{ alertLoginMessage }}</div>
 
@@ -59,7 +63,7 @@ export default {
     fillLoginUser() {
       let dataForLogin = [
         { Danil123: "2222" },
-        { Kyla123: "2222" },
+        { Carina123: "2222" },
         { Alex123: "2222" },
         { Margarete123: "2222" },
       ];
@@ -145,7 +149,9 @@ export default {
     &:not(:last-child) {
       margin-bottom: 20px;
     }
-
+    &_submit {
+      cursor: pointer;
+    }
     &:focus {
       border-color: #3e7ea2;
     }
