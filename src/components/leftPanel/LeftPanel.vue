@@ -88,7 +88,7 @@ export default {
   overflow-y: scroll;
 
   flex: 1 1 50%;
-
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     width: 8px;
     min-height: 5px;

@@ -13,6 +13,7 @@
       />
     </form>
   </div>
+  <hr />
 </template>
 
 <script>
@@ -73,5 +74,8 @@ export default {
     mask-size: cover;
     vertical-align: middle;
   }
+}
+hr {
+  border-top: 1px solid #b3e2f0;
 }
 </style>

@@ -78,6 +78,8 @@ export default {
   &__row_top {
     overflow-y: scroll;
     flex: 1 1 auto;
+    scrollbar-width: none;
+
     &::-webkit-scrollbar {
       width: 5px;
       height: 5px;
@@ -93,8 +95,6 @@ export default {
   }
 
   &__row_bot {
-    //  flex: 0 0 10%;
-    // outline: 1px solid black;
   }
 }
 

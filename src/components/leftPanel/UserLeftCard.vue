@@ -59,7 +59,7 @@ export default {
 
   position: relative;
   display: flex;
-  border: 1px solid #69accd;
+  // border: 1px solid #69accd;
 
   &__photo {
     line-height: 0;

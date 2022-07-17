@@ -9,8 +9,6 @@
       />
       <input type="submit" value=" " class="send__fields send__submit" />
     </div>
-
-    <!-- <p><label for="sendValue">{{ labelErrorForm }}</label></p> -->
   </form>
 </template>
 
@@ -66,10 +64,9 @@ export default {
 <style lang="scss" scoped>
 .send {
   display: block;
-  //margin: 10px 0 0 0;
 
   &__container {
-    margin: 15px 20px 25px 20px;
+    margin: 15px 10% 25px 15%;
     display: flex;
     outline: 2px solid #23b4ea;
   }
