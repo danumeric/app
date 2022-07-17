@@ -38,7 +38,6 @@ export default {
   methods: {
     clearInput(targetID) {
       //clear variable of visible messages when change conversation
-      console.log(this.getTargetUserID);
       if (this.getTargetUserID && targetID != this.getTargetUserID) {
         document.forms.send.sendValue.value = "";
       }
@@ -50,29 +49,35 @@ export default {
 
 <style lang="scss" scoped>
 .choosed-usercard {
-  background: rgb(150, 219, 244);
+  background: #a9e4f4;
 }
 
 .user-left-card {
   // box-sizing: border-box;
   cursor: pointer;
+  padding: 5px 0px 5px 5px;
+
   position: relative;
   display: flex;
   border: 1px solid #69accd;
 
   &__photo {
-    padding: 5px 0px 5px 5px;
     line-height: 0;
   }
 
   &__photo {
+    position: relative;
+    left: 5px;
     border-radius: 50%;
     z-index: 2;
+    width: 60px;
+    height: 60px;
   }
 
   &__flag {
     width: 20px;
     position: absolute;
+    outline: 1px dotted #afd5e0;
   }
 
   &__name {

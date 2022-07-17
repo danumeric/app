@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search-not-found {
+  background-color: #f1f9fc;
+}
 </style>

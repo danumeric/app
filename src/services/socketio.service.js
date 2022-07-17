@@ -10,7 +10,6 @@ class SocketioService {
 
   async setupSocketConnection() {
     try {
-      console.log('socket on');
       this.socket = io(`${adressBackend}`, {
         reconnectionDelay: 1000,
         reconnection: true,
@@ -55,7 +54,7 @@ class SocketioService {
       idMongo: idMongo
     },
       (response) => {// when delievered or error
-        console.log(response.idDelivMsg);
+        //console.log(response.idDelivMsg);
         let payload = {
           idMessage: response.idDelivMsg,
           newStatus: 'onServer'

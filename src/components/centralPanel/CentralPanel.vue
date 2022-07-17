@@ -93,9 +93,8 @@ export default {
   }
 
   &__row_bot {
-    //TODO design
-    flex: 0 0 10%;
-    outline: 1px solid black;
+    //  flex: 0 0 10%;
+    // outline: 1px solid black;
   }
 }
 

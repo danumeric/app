@@ -50,7 +50,6 @@ export default {
         deliveryStatus: deliveryStatus,
         targetUserID: targetUserID,
       };
-      console.log("payload:  ", payload);
       payload.fromOwner = true;
 
       await this.addMessageToVuex(payload);
@@ -70,9 +69,9 @@ export default {
   //margin: 10px 0 0 0;
 
   &__container {
-    margin: 15px 5px 5px 5px;
+    margin: 15px 20px 25px 20px;
     display: flex;
-    outline: 1px solid rgb(95, 185, 230);
+    outline: 2px solid #23b4ea;
   }
 
   &__field {
@@ -82,12 +81,14 @@ export default {
   &__submit {
     display: inline-block;
     width: 35px;
-    height: 35px;
-    margin: 0px 10px 0px 0px;
+    height: 30px;
     cursor: pointer;
-    background-color: rgb(54, 194, 249);
+    background-color: #81c9ef;
     -webkit-mask: url(@/assets/icons/ico_send.svg) no-repeat 50% 50%;
     mask: url(@/assets/icons/ico_send.svg) no-repeat 50% 50%;
+    transform-box: fill-box;
+    transform: rotate(-20deg);
+    mask-size: 28px;
   }
 
   &__icon {

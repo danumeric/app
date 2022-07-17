@@ -4,13 +4,10 @@ import { adressBackend } from '../index.js'
 export default ({
   state: {
     friendsDB: [],
-    myProfile: {},
   },
   getters: {
 
-    getMyProfile(state) {
-      return state.myProfile;
-    },
+
     getFriendsDB(state) {
       return state.friendsDB;
     },
@@ -31,9 +28,7 @@ export default ({
     updateFriendsDB(state, db) {
       state.friendsDB = db;
     },
-    updateMyProfile(state, profile) {
-      state.myProfile = profile;
-    }
+
 
   },
   actions: {

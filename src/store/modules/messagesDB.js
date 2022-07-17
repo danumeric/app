@@ -43,7 +43,6 @@ export default ({
       let existingConversation = db.find((item) => (item.idInterlocator === userId));
 
       if (!existingConversation) {
-        console.log('creating new conversation');
         const t = localStorage.getItem('token');
         if (!t) {
           router.push('/auth');
@@ -102,7 +101,6 @@ export default ({
 
     changeMessageStatus(state, status) {
       let targetMessage = state.displayedMessages.find(item => item._id.toString() === status.idMessage);
-      console.log('trg:  ', targetMessage);
       targetMessage.deliveryStatus = status.newStatus;
     }
   },

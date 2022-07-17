@@ -1,11 +1,18 @@
 <template>
   <div class="workspace__element">
-    <div class="wrapper">
-      <div class="myprofile">
-        <p>You login as</p>
-        <p>{{ getMyProfile.firstName }} {{ getMyProfile.secondName }}</p>
+    <div class="myprofile">
+      <div class="myprofile__photo">
+        <img
+          class="myprofile__img"
+          :src="this.getMyProfile.selectedAvatar"
+          :alt="this.getMyProfile.firstName"
+        />
       </div>
-      <div class="navigation" @click="exit">
+      <div class="myprofile__name">
+        <h3>{{ getMyProfile.firstName }} {{ getMyProfile.secondName }}</h3>
+        <p>Online</p>
+      </div>
+      <div class="myprofile__button" @click="exit">
         <a href="#">Exit</a>
       </div>
     </div>
@@ -24,6 +31,7 @@ export default {
   computed: {
     ...mapGetters(["getMyProfile"]),
   },
+
   methods: {
     ...mapMutations(["clearAll"]),
 
@@ -46,27 +54,47 @@ hr {
   border-top: 1px solid #69accd;
 }
 
-.wrapper {
+.myprofile {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px 0;
-}
+  background-color: #00b1f4;
+  &__button {
+    background-color: #01aaeb;
+    outline: 1px solid #f9fcfd;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 1px 2px;
+    margin: 0px 5px 0px 0px;
+    align-self:flex-start;
+    
 
-.navigation {
-  background-color: #69accd;
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 5px 0;
-  margin: 0px 5px 0px 0px;
-  flex: 0 1 20%;
-
-  & a {
-    color: black;
+    & a {
+      color: #f9fcfd;
+      font-size: 14px;
+    }
   }
-}
+  &__photo {
+    padding: 10px 0px 10px 10px;
+  }
+  &__name {
+    color: #eafcef;
+  }
+  &__img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    outline: 3px solid #009cd3;
+  }
 
-.myprofile {
-  flex: 0 1 80%;
+  &__name {
+    padding: 0px 0px 0px 15px;
+    text-align: left;
+    flex: 0 1 80%;
+    p {
+      font-size: 12px;
+    }
+  }
 }
 </style>

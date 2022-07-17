@@ -11,10 +11,16 @@ export default ({
     getStatusLogin(state) {
       return state.isLogined
     },
+    getMyProfile(state) {
+      return state.myProfile
+    },
   },
   mutations: {
     loginSuccessful(state, value) {
       state.isLogined = value;
+    },
+    updateMyProfile(state, profile) {
+      state.myProfile = profile;
     }
   },
 
@@ -36,7 +42,7 @@ export default ({
 
         this.token = result.token;
         if (this.token) {
-          context.commit('loginSuccessful', true);//!
+          context.commit('loginSuccessful', true);
           localStorage.setItem("token", this.token);
           router.push("/");
           return result.message;
