@@ -9,8 +9,15 @@
 import LeftPanelComp from "@/components/leftPanel/LeftPanel";
 import CentralPanel from "@/components/centralPanel/CentralPanel";
 import router from "@/router";
+import { useMeta } from "vue-meta";
 
 export default {
+  setup() {
+    useMeta({
+      title: "",
+      htmlAttrs: { lang: "en", amp: true },
+    });
+  },
   name: "HomeView",
   data() {
     return {

@@ -34,9 +34,17 @@
 <script>
 import { mapMutations, mapActions } from "vuex";
 import SocketioService from "@/services/socketio.service.js";
+import { useMeta } from "vue-meta";
 
 export default {
+  setup() {
+    useMeta({
+      title: "authentification",
+      htmlAttrs: { lang: "en", amp: true },
+    });
+  },
   name: "AuthView",
+
   data() {
     return {
       alertLoginMessage: "",

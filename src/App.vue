@@ -1,4 +1,9 @@
 <template>
+  <metainfo>
+    <template v-slot:title="{ content }">{{
+      content ? `DanChat ${content}` : `DanChat`
+    }}</template>
+  </metainfo>
   <router-view v-cloak></router-view>
 </template>
 

@@ -290,8 +290,15 @@
 import PictureForm from "@/components/regForm/PictureForm";
 const adressBackend = "https://safe-fjord-51597.herokuapp.com";
 //const adressBackend = 'http://localhost:5000'
+import { useMeta } from "vue-meta";
 
 export default {
+  setup() {
+    useMeta({
+      title: "registration",
+      htmlAttrs: { lang: "en", amp: true },
+    });
+  },
   name: "RegView",
   data() {
     return {
